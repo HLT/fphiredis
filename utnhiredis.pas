@@ -155,8 +155,9 @@ procedure c_freeReplyObject ( reply:pointer );
   cdecl; external lib_hiredis name 'freeReplyObject';
 
 {
+
 function  redisvFormatCommand ( target:PPchar; format:Pchar; ap:va_list ):longint; 
-  cdecl; external lib_hiredis name 'redisvFormatCommand';
+  cdecl; varargs; external lib_hiredis name 'redisvFormatCommand';
 
 function  c_redisFormatCommand ( target:PPchar; format:Pchar; args:array of const ):longint; 
   cdecl; external lib_hiredis name 'redisFormatCommand';
@@ -206,7 +207,7 @@ function  c_redisGetReplyFromReader ( c:PredisContext; reply:Ppointer ):longint;
 
 {
 function  redisvAppendCommand ( c:PredisContext; format:Pchar; ap:va_list ):longint; 
-  cdecl; external 'libhiredis' name 'redisvAppendCommand';
+  cdecl; varargs; external 'libhiredis' name 'redisvAppendCommand';
 }
 
 function  c_redisAppendCommand ( c:PredisContext; format:Pchar; args:array of const ):longint; 
@@ -217,7 +218,7 @@ function  c_redisAppendCommandArgv ( c:PredisContext; argc:longint; argv:PPchar;
 
 {
 function  redisvCommand ( c:PredisContext; format:Pchar; ap:va_list ):pointer; 
-  cdecl; external lib_hiredis name 'redisCommand';
+  cdecl; varargs; external lib_hiredis name 'redisCommand';
 }
 
 function  c_redisCommand ( c:PredisContext; format:Pchar; args:array of const ):pointer; 
